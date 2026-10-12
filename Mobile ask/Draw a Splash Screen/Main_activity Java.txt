@@ -1,0 +1,55 @@
+
+package com.example.taskmate;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.content.Intent;
+import android.graphics.Color;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button googleBtn = findViewById(R.id.googleBtn);
+        Button loginBtn = findViewById(R.id.loginBtn);
+        Button signupBtn = findViewById(R.id.signupBtn);
+
+        EditText email = findViewById(R.id.email);
+        EditText password = findViewById(R.id.password);
+
+        googleBtn.setOnClickListener(v -> {
+            email.setText("hashiramir1212@gmail.com");
+            Toast.makeText(this,
+                    "Signed in as hashiramir1212@gmail.com",
+                    Toast.LENGTH_SHORT).show();
+            openBlankScreen();
+        });
+
+        loginBtn.setOnClickListener(v -> {
+            String e = email.getText().toString().trim();
+            String p = password.getText().toString();
+
+            if (e.isEmpty() || p.isEmpty()) {
+                Toast.makeText(this,
+                        "Email aur password enter karo",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                openBlankScreen();
+            }
+        });
+        signupBtn.setOnClickListener(v -> openBlankScreen());
+    }
+    private void openBlankScreen() {
+        Intent intent = new Intent(MainActivity.this, BlankActivity.class);
+        startActivity(intent);
+    }
+}
