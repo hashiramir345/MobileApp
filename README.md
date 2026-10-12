@@ -76,6 +76,7 @@ Important: Google authentication cannot complete until this setup is done. The r
 6. Upload the project files and include the README.
 
 Suggested repository name: TaskMate-Android-App
+
 One Final note:
 
 "the ZIP contains the project source and configuration, but I haven't run an Android Gradle build here. Open it in Android Studio and resolve any version or SDK compatibility prompts before publishing it."
