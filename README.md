@@ -27,8 +27,8 @@ Thank you!
 - TaskMate title and subtitle.
 - Opens the login screen automatically after two seconds.
 - Files: SplashActivity.java and activity_splash.xml.
-**  
-Activity 2: Login Screen**
+
+**Activity 2: Login Screen**
 - Google sign-in button.
 - Email and password fields.
 - Login button.
@@ -48,10 +48,7 @@ You used LinearLayout in both the splash and login screens.
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <!-- Add TextViews, EditTexts and Buttons here -->
-
+    android:orientation="vertical"> <!-- Add TextViews, EditTexts and Buttons here -->
 </LinearLayout>
 
 - LinearLayout: arranges interface elements in a row or column.
@@ -59,7 +56,8 @@ You used LinearLayout in both the splash and login screens.
 - TextView: displays text.
 - EditText: accepts user input.
 - Button: performs an action when clicked.
-**  Google Sign in Button Work:**
+  
+**Google Sign in Button Work:**
 The project includes Google Sign-In and Firebase Authentication code.
 When you click SIGN IN WITH GOOGLE, it attempts to open the Google account chooser. To make the authentication work, you must first:
 1. Create a Firebase project.
@@ -69,7 +67,7 @@ When you click SIGN IN WITH GOOGLE, it attempts to open the Google account choos
 5. Configure your app's SHA-1 fingerprint.
 Important: Google authentication cannot complete until this setup is done. The regular email/password Login button currently performs basic input validation; it is not connected to an authentication service yet.
 
-** Upload the project to GitHub**
+**Upload the project to GitHub**
 1. Extract TaskMate_Android_Project.zip.
 2. Open the extracted project in Android Studio.
 3. Complete the Firebase setup if you want to test Google sign-in.
@@ -78,5 +76,6 @@ Important: Google authentication cannot complete until this setup is done. The r
 6. Upload the project files and include the README.
 
 Suggested repository name: TaskMate-Android-App
-One final note:
+One Final note:
+
 "the ZIP contains the project source and configuration, but I haven't run an Android Gradle build here. Open it in Android Studio and resolve any version or SDK compatibility prompts before publishing it."
