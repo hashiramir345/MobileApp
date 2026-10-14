@@ -1,0 +1,93 @@
+
+ANDROID APP DEVELOPMENT
+SharedPreferences in Android (Java)
+Simple English Notes • Definitions • Methods • Code Example
+1. What is SharedPreferences?
+SharedPreferences is an Android feature used to store small amounts of simple data as key–value pairs. The information is saved on the device and can normally be read again when the app is closed and reopened. It is commonly used for settings such as a username, selected theme, language, or a preference checkbox.
+Example: The key "username" can store the value "Ali". The app can read "Ali" later by using the same key.
+2. What is a Key–Value Pair?
+A key is the name used to identify stored information. A value is the information saved under that key.
+Examples: username → "Ali"; age → 20; dark_mode → true.
+3. getSharedPreferences()
+getSharedPreferences() opens or creates a preferences file with a given name. MODE_PRIVATE is commonly used as the access mode.
+SharedPreferences sp = getSharedPreferences("savedData", MODE_PRIVATE);
+4. Important SharedPreferences Methods
+Method	Purpose	Example
+putString(key, value)	Stores text.	editor.putString("username", "Ali");
+putInt(key, value)	Stores an integer.	editor.putInt("age", 20);
+putBoolean(key, value)	Stores true or false.	editor.putBoolean("dark_mode", true);
+getString(key, default)	Reads text; uses the default if the key is missing.	sp.getString("username", "Guest");
+getInt(key, default)	Reads an integer; uses the default if missing.	sp.getInt("age", 0);
+getBoolean(key, default)	Reads true or false; uses the default if missing.	sp.getBoolean("dark_mode", false);
+edit()	Creates an Editor to change stored data.	SharedPreferences.Editor editor = sp.edit();
+apply()	Applies changes asynchronously.	editor.apply();
+commit()	Saves changes synchronously and returns a success value.	editor.commit();
+remove(key)	Removes one stored value.	editor.remove("username").apply();
+clear()	Removes all values from this preferences file.	editor.clear().apply();
+5. What is SharedPreferences.Editor?
+SharedPreferences.Editor is used to add, update, or remove stored values. Call edit(), make the required changes, and then call apply() or commit().
+SharedPreferences.Editor editor = sp.edit();
+editor.putString("username", "Ali");
+editor.putInt("age", 20);
+editor.apply();
+6. What is MODE_PRIVATE?
+MODE_PRIVATE means the preferences file is private to the app under Android's normal app-sandbox rules. It does not encrypt the saved data, so do not store passwords or highly sensitive information as plain text.
+7. Complete Java Example: Save and Read a Username
+This example assumes activity_main.xml contains an EditText with ID etUsername, a Button with ID btnSave, and a TextView with ID tvResult.
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+    EditText etUsername;
+    Button btnSave;
+    TextView tvResult;
+    SharedPreferences sp;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        etUsername = findViewById(R.id.etUsername);
+        btnSave = findViewById(R.id.btnSave);
+        tvResult = findViewById(R.id.tvResult);
+
+        sp = getSharedPreferences("savedData", MODE_PRIVATE);
+
+        // Read the previously saved username
+        String savedName = sp.getString("username", "");
+        etUsername.setText(savedName);
+
+        btnSave.setOnClickListener(v -> {
+            String name = etUsername.getText().toString();
+
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("username", name);
+            editor.apply();
+
+            tvResult.setText("Saved username: " + name);
+        });
+    }
+}
+8. How the Code Works
+1.	The app opens the preferences file named savedData.
+2.	It reads the value stored under the key username.
+3.	If the key does not exist, the default empty string is returned.
+4.	The user enters a name and taps Save.
+5.	The app stores the name with putString().
+6.	apply() saves the change, and the app can read the name next time it opens.
+9. When Should SharedPreferences Be Used?
+Use SharedPreferences for small settings and simple values. For large collections or structured data, a database such as Room/SQLite is usually more suitable. SharedPreferences is not designed for storing photos or large files.
+10. Quick Revision Questions
+7.	Define SharedPreferences.
+8.	What is a key–value pair?
+9.	What is the purpose of getSharedPreferences()?
+10.	Differentiate putString() and getString().
+11.	What is the purpose of SharedPreferences.Editor?
+12.	What is the difference between apply() and commit()?
+13.	What does MODE_PRIVATE mean?
+14.	Give two real-life uses of SharedPreferences.
